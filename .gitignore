@@ -1,0 +1,19 @@
+# Секреты и сертификаты Let’s Encrypt
+certbot-etc/
+certbot-var/
+
+# Данные БД (если вы рано или поздно начнёте монтировать локальный volume)
+*.sqlite3
+db_data/
+
+# Логи, кэши, временные файлы
+__pycache__/
+*.py[cod]
+*.log
+*.env
+.env
+
+# IDE и система
+.vscode/
+.idea/
+*.swp
