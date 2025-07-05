@@ -39,12 +39,12 @@ services:
       - app_net
 
   certbot:
-    image: certbot/certbot
-    container_name: resume_certbot
-    volumes:
-      - certbot-etc:/etc/letsencrypt
-      - certbot-var:/var/www/certbot
-    entrypoint: ""
+  image: certbot/certbot
+  container_name: resume_certbot
+  command: ["sh", "-c", "trap : TERM; while :; do sleep 3600; done"]
+  volumes:
+    - certbot-etc:/etc/letsencrypt
+    - certbot-var:/var/www/certbot
 
 volumes:
   db_data:
