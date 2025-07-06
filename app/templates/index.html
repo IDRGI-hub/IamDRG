@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Моя визитка</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-50 text-gray-800 snap-y snap-mandatory overflow-y-scroll h-screen">
   <!-- Hero Section -->
-  <section id="hero" class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-blue-600 to-teal-400 text-white">
-    <img src="/static/images/photo.jpg" alt="Фото я" class="w-500 h-500 rounded-full border-4 border-white mb-4 object-cover" />
-    <h1 class="text-5xl font-extrabold mb-4">Очередниченко Данила Алексеевич</h1>
+  <section id="hero" class="snap-start min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-blue-600 to-teal-400 text-white">
+    <!-- Profile photo -->
+    <img src="/static/images/photo.jpg" alt="Фото я" class="w-48 h-48 rounded-full border-4 border-white mb-4 object-cover" />
+    <h1 class="text-5xl font-extrabold mb-2">Очередниченко Данила Алексеевич</h1>
     <p class="text-xl mb-6">Junior DevOps Engineer & Python Developer & Support Engineer</p>
     <div class="space-x-4">
       <a href="#about" class="px-6 py-3 bg-white text-blue-600 rounded-full font-semibold hover:bg-opacity-90">Узнать больше</a>
@@ -19,18 +20,17 @@
   </section>
 
   <!-- About Section -->
-  <section id="about" class="py-20 container mx-auto px-6">
+  <section id="about" class="snap-start py-20 container mx-auto px-6">
     <h2 class="text-3xl font-bold mb-6 text-center">Обо мне</h2>
     <p class="max-w-2xl mx-auto leading-relaxed text-center">Я опытный инженер DevOps с более чем 5-летним опытом автоматизации инфраструктуры, работы с Docker, Kubernetes, а также разработки бэкенда на Python и FastAPI.</p>
   </section>
 
   <!-- Skills Section -->
-  <section id="skills" class="py-20 bg-white">
+  <section id="skills" class="snap-start py-20 bg-white">
     <div class="container mx-auto px-6">
       <h2 class="text-3xl font-bold mb-10 text-center">Навыки</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
         <div class="flex flex-col items-center">
-          <!-- Replace src with actual icons -->
           <img src="/static/icons/docker.svg" alt="Docker" class="w-16 h-16 mb-2" />
           <p>Docker</p>
         </div>
@@ -51,10 +51,9 @@
   </section>
 
   <!-- Projects Section -->
-  <section id="projects" class="py-20 container mx-auto px-6">
+  <section id="projects" class="snap-start py-20 container mx-auto px-6">
     <h2 class="text-3xl font-bold mb-10 text-center">Проекты</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <!-- Project Card -->
       <div class="bg-white rounded-lg shadow-md overflow-hidden">
         <img src="/static/projects/project1.png" alt="Project 1" class="w-full h-48 object-cover" />
         <div class="p-6">
@@ -68,7 +67,7 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="py-20 bg-gradient-to-r from-teal-400 to-blue-600 text-white">
+  <section id="contact" class="snap-start py-20 bg-gradient-to-r from-teal-400 to-blue-600 text-white">
     <div class="container mx-auto px-6 text-center">
       <h2 class="text-3xl font-bold mb-6">Контакты</h2>
       <p class="mb-6">Будем на связи!</p>
@@ -81,8 +80,8 @@
   </section>
 
   <!-- Footer -->
-  <footer class="py-6 bg-gray-800 text-gray-400 text-center">
-    <p>&copy; 2025 Иван Иванов. Все права защищены.</p>
+  <footer class="snap-start py-6 bg-gray-800 text-gray-400 text-center">
+    <p>&copy; 2025 Очередниченко Данила Алексеевич. Все права защищены.</p>
   </footer>
 </body>
 </html>
