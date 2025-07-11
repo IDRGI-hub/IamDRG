@@ -6,10 +6,10 @@
   <title>Linux-like Desktop</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="overflow-hidden h-screen">
+<body class="overflow-hidden h-screen bg-gray-800">
   <div id="container" class="relative w-full h-full">
     <!-- Login Screen -->
-    <section id="login" class="absolute inset-0 flex flex-col justify-center items-center bg-gray-800 text-white transition-transform duration-700 ease-in-out">
+    <section id="login" class="absolute inset-0 flex flex-col justify-center items-center bg-gray-900 text-white transition-transform duration-700 ease-in-out">
       <img src="/static/images/photo.jpg" alt="Фото я" class="w-48 h-48 rounded-full border-4 border-white mb-4 object-cover" />
       <h1 class="text-3xl font-bold mb-2">Очередниченко Данила Алексеевич</h1>
       <p class="mb-6">Linux Environment</p>
@@ -19,41 +19,56 @@
     <!-- Desktop Screen -->
     <section id="desktop" class="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-in-out transform translate-y-full" style="background-image: url('/static/images/wallpaper.jpg')">
       <!-- Top bar -->
-      <div class="h-8 bg-gray-900 bg-opacity-50 flex items-center px-4 text-white justify-between">
-        <!-- Left placeholder for spacing -->
+      <div class="h-8 bg-gray-900 bg-opacity-70 flex items-center px-4 text-white justify-between">
         <div class="w-1/3"></div>
-        <!-- Center: Date and Time -->
-        <div id="datetime" class="w-1/3 flex justify-center space-x-4 font-mono"></div>
-        <!-- Right: Controls -->
-        <div class="w-1/3 flex justify-end items-center space-x-4">
-          <!-- Language Switch -->
+        <div id="datetime" class="w-1/3 flex justify-center space-x-4 font-mono text-sm"></div>
+        <div class="w-1/3 flex justify-end items-center space-x-4 text-sm">
           <button id="lang-btn" class="focus:outline-none">EN/RU</button>
-          <!-- Theme Toggle -->
           <button id="theme-btn" class="focus:outline-none">🌓</button>
-          <!-- Volume Control -->
-          <div class="flex items-center space-x-1">
-            <button id="vol-down" class="focus:outline-none">🔉</button>
-            <button id="vol-up" class="focus:outline-none">🔊</button>
-          </div>
+          <button id="vol-down" class="focus:outline-none">🔉</button>
+          <button id="vol-up" class="focus:outline-none">🔊</button>
         </div>
       </div>
       <!-- Icons area -->
       <div class="p-6 grid grid-cols-4 gap-8">
         <div class="flex flex-col items-center cursor-pointer hover:scale-110 transform transition">
           <img src="/static/icons/terminal.svg" alt="Terminal" class="w-12 h-12 mb-2" />
-          <span>Terminal</span>
+          <span class="text-xs text-white">Terminal</span>
         </div>
         <div class="flex flex-col items-center cursor-pointer hover:scale-110 transform transition">
           <img src="/static/icons/browser.svg" alt="Browser" class="w-12 h-12 mb-2" />
-          <span>Browser</span>
+          <span class="text-xs text-white">Browser</span>
         </div>
         <div class="flex flex-col items-center cursor-pointer hover:scale-110 transform transition">
           <img src="/static/icons/folder.svg" alt="Files" class="w-12 h-12 mb-2" />
-          <span>Files</span>
+          <span class="text-xs text-white">Files</span>
         </div>
         <div class="flex flex-col items-center cursor-pointer hover:scale-110 transform transition">
           <img src="/static/icons/settings.svg" alt="Settings" class="w-12 h-12 mb-2" />
-          <span>Settings</span>
+          <span class="text-xs text-white">Settings</span>
+        </div>
+      </div>
+      <!-- Slider toggle button -->
+      <button id="slider-toggle" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-900 bg-opacity-70 text-white p-2 rounded-full focus:outline-none">📞</button>
+      <!-- Contact Slider -->
+      <div id="slider" class="fixed bottom-0 left-0 w-full bg-gray-800 bg-opacity-90 p-6 transform translate-y-full transition-transform duration-500 ease-in-out">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-white font-semibold">Контакты</h3>
+          <button id="slider-close" class="text-white focus:outline-none">✖️</button>
+        </div>
+        <div class="grid grid-cols-3 gap-4">
+          <a href="mailto:danila17102002@gmail.com" class="flex flex-col items-center justify-center bg-white rounded-md p-4 hover:bg-gray-200">
+            <img src="/static/icons/mail.svg" alt="Email" class="w-8 h-8 mb-2" />
+            <span class="text-sm">Email</span>
+          </a>
+          <a href="https://t.me/metaagrar" class="flex flex-col items-center justify-center bg-white rounded-md p-4 hover:bg-gray-200">
+            <img src="/static/icons/telegram.svg" alt="Telegram" class="w-8 h-8 mb-2" />
+            <span class="text-sm">Telegram</span>
+          </a>
+          <a href="https://github.com/IDRGI-hub" class="flex flex-col items-center justify-center bg-white rounded-md p-4 hover:bg-gray-200">
+            <img src="/static/icons/github.svg" alt="GitHub" class="w-8 h-8 mb-2" />
+            <span class="text-sm">GitHub</span>
+          </a>
         </div>
       </div>
     </section>
@@ -82,6 +97,14 @@
     const themeBtn = document.getElementById('theme-btn');
     themeBtn.addEventListener('click', () => {
       document.documentElement.classList.toggle('dark');
+    });
+    // Slider toggle
+    const slider = document.getElementById('slider');
+    document.getElementById('slider-toggle').addEventListener('click', () => {
+      slider.classList.toggle('translate-y-full');
+    });
+    document.getElementById('slider-close').addEventListener('click', () => {
+      slider.classList.add('translate-y-full');
     });
   </script>
 </body>
