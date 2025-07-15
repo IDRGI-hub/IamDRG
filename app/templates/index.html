@@ -30,6 +30,13 @@
     [data-theme="dark"] .bg-white { background-color: #1a1a1a; }
     [data-theme="dark"] .text-gray-900 { color: #e5e5e5; }
     [data-theme="dark"] .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); }
+    [data-theme="dark"] .bg-white .text-2xl { color: #e5e5e5; }
+    [data-theme="dark"] .bg-white p { color: #d1d5db; }
+    [data-theme="dark"] .bg-white span { color: #e5e5e5; }
+    [data-theme="dark"] .bg-gray-50 { background-color: #2a2a2a; }
+    [data-theme="dark"] .bg-white .text-xl { color: #e5e5e5; }
+    [data-theme="dark"] .bg-white .text-gray-700 { color: #d1d5db; }
+    [data-theme="dark"] .bg-white .text-gray-600 { color: #9ca3af; }
     .theme-toggle {
       transition: all 0.3s ease;
     }
@@ -51,6 +58,7 @@
       <nav class="space-y-4">
         <a href="#hero" class="block hover:text-accent">Home</a>
         <a href="#about" class="block hover:text-accent">About</a>
+        <a href="#experience" class="block hover:text-accent">Experience</a>
         <a href="#skills" class="block hover:text-accent">Skills</a>
         <a href="#projects" class="block hover:text-accent">Projects</a>
         <a href="#contact" class="block hover:text-accent">Contact</a>
@@ -58,7 +66,7 @@
     </div>
   </div>
   <!-- Hamburger -->
-  <button id="hamburger" class="fixed top-4 left-4 z-20 md:hidden p-2 bg-primary text-white rounded-md">
+  <button id="hamburger" class="fixed top-4 left-4 z-20 md:hidden p-2 bg-primary text-white rounded-md transition-all duration-300 hover:bg-primary-dark">
     ☰
   </button>
 
@@ -75,6 +83,57 @@
     <section id="about" class="py-20 px-4 md:px-16">
       <h2 class="text-3xl font-bold mb-6">Обо мне</h2>
       <p class="max-w-3xl mx-auto leading-relaxed">Я опытный инженер DevOps с более чем 5-летним опытом автоматизации инфраструктуры: Docker, Kubernetes, CI/CD, мониторинг и разработка бэкенда на Python и FastAPI.</p>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="py-20 px-4 md:px-16 bg-gray-50">
+      <h2 class="text-3xl font-bold mb-6 text-center">Опыт работы</h2>
+      <div class="max-w-4xl mx-auto space-y-8">
+        <!-- Experience Item 1 -->
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+            <h3 class="text-xl font-semibold text-primary">DevOps Engineer</h3>
+            <span class="text-sm text-gray-600 mt-2 md:mt-0">2023 - настоящее время</span>
+          </div>
+          <p class="text-gray-700 mb-3">Компания: ООО "Технологии будущего"</p>
+          <ul class="list-disc list-inside text-gray-600 space-y-1">
+            <li>Автоматизация процессов CI/CD с использованием GitLab CI и Jenkins</li>
+            <li>Развертывание и управление Kubernetes кластерами</li>
+            <li>Мониторинг инфраструктуры с помощью Prometheus и Grafana</li>
+            <li>Разработка микросервисов на Python/FastAPI</li>
+          </ul>
+        </div>
+
+        <!-- Experience Item 2 -->
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+            <h3 class="text-xl font-semibold text-primary">Python Developer</h3>
+            <span class="text-sm text-gray-600 mt-2 md:mt-0">2021 - 2023</span>
+          </div>
+          <p class="text-gray-700 mb-3">Компания: ИТ-Сервис</p>
+          <ul class="list-disc list-inside text-gray-600 space-y-1">
+            <li>Разработка REST API с использованием FastAPI</li>
+            <li>Интеграция с базами данных PostgreSQL и MongoDB</li>
+            <li>Создание Telegram ботов для автоматизации процессов</li>
+            <li>Работа с Docker и контейнеризацией приложений</li>
+          </ul>
+        </div>
+
+        <!-- Experience Item 3 -->
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+            <h3 class="text-xl font-semibold text-primary">Support Engineer</h3>
+            <span class="text-sm text-gray-600 mt-2 md:mt-0">2020 - 2021</span>
+          </div>
+          <p class="text-gray-700 mb-3">Компания: Техподдержка Плюс</p>
+          <ul class="list-disc list-inside text-gray-600 space-y-1">
+            <li>Техническая поддержка пользователей и клиентов</li>
+            <li>Диагностика и решение проблем с инфраструктурой</li>
+            <li>Документирование процессов и создание инструкций</li>
+            <li>Работа с системами мониторинга и логирования</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <!-- Skills -->
@@ -119,7 +178,7 @@
         </div>
         <div class="md:flex bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow">
           <img src="/static/projects/project1.png" alt="Project1" class="w-full md:w-1/3 h-48 object-cover">
-          <div class="p-6 flex flex-col justify-between">
+          <div class="p-6 flex flex-col justify-between ">
             <h3 class="text-2xl font-semibold mb-2">StokTeleBot</h3>
             <p class="mb-4">Telegram-бот для сбора статистики Wildberries, написан на Python, развернут с Celery и FastAPI.</p>
             <div class="space-x-4">
@@ -148,6 +207,9 @@
     const hamburger = document.getElementById('hamburger');
     hamburger.addEventListener('click', () => {
       sidebar.classList.toggle('-translate-x-full');
+      // Hide hamburger when sidebar is open
+      hamburger.style.opacity = sidebar.classList.contains('-translate-x-full') ? '1' : '0';
+      hamburger.style.pointerEvents = sidebar.classList.contains('-translate-x-full') ? 'auto' : 'none';
     });
 
     // Theme toggle functionality
