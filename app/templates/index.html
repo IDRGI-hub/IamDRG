@@ -27,13 +27,27 @@
   <style>
     [data-theme="dark"] { --tw-bg-opacity:1; background-color: rgba(8,18,114,var(--tw-bg-opacity)); color: white; }
     [data-theme="dark"] .sidebar { background-color: #081272; }
+    [data-theme="dark"] .bg-white { background-color: #1a1a1a; }
+    [data-theme="dark"] .text-gray-900 { color: #e5e5e5; }
+    [data-theme="dark"] .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); }
+    .theme-toggle {
+      transition: all 0.3s ease;
+    }
+    .theme-toggle:hover {
+      transform: scale(1.1);
+    }
   </style>
 </head>
 <body class="font-mono bg-white text-gray-900" id="body">
   <!-- Sidebar -->
   <div id="sidebar" class="sidebar fixed inset-y-0 left-0 w-64 bg-primary text-white transform -translate-x-full md:translate-x-0 transition-transform">
     <div class="p-6">
-      <h2 class="text-2xl font-bold mb-8">Меню</h2>
+      <div class="flex justify-between items-center mb-8">
+        <h2 class="text-2xl font-bold">Меню</h2>
+        <button id="theme-toggle" class="theme-toggle p-2 bg-accent text-primary rounded-full hover:bg-opacity-90">
+          <span id="theme-icon">🌙</span>
+        </button>
+      </div>
       <nav class="space-y-4">
         <a href="#hero" class="block hover:text-accent">Home</a>
         <a href="#about" class="block hover:text-accent">About</a>
@@ -51,7 +65,7 @@
   <main class="md:ml-64">
     <!-- Hero -->
     <section id="hero" class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-primary to-secondaryA text-white text-center px-4">
-      <img src="app/static/images/photo.jpg" alt="Фото" class="w-40 h-40 rounded-full border-4 border-white mb-6 object-cover animate-fade-in">
+      <img src="static/images/photo.jpg" alt="Фото" class="w-40 h-40 rounded-full border-4 border-white mb-6 object-cover animate-fade-in">
       <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-slide-in">Очередниченко Данила Алексеевич</h1>
       <p class="text-lg md:text-2xl mb-6 animate-fade-in-delay">Junior DevOps Engineer & Python Developer & Support Engineer</p>
       <a href="#about" class="px-6 py-3 bg-accent text-primary font-semibold rounded-full hover:bg-opacity-90 animate-button-in">Узнать больше</a>
@@ -97,7 +111,7 @@
             <h3 class="text-2xl font-semibold mb-2">StokTeleBot</h3>
             <p class="mb-4">Telegram-бот для сбора статистики Wildberries, написан на Python, развернут с Celery и FastAPI.</p>
             <div class="space-x-4">
-              <span class="px-3 py-1 bg-primary-dark text-white rounded-full">Python</span>
+              <span class="px-3 py-1 bg-primary-dark text-white rounded-full ">Python</span>
               <span class="px-3 py-1 bg-secondaryA text-white rounded-full">Docker</span>
               <span class="px-3 py-1 bg-secondaryB text-white rounded-full">Celery</span>
             </div>
@@ -109,9 +123,9 @@
             <h3 class="text-2xl font-semibold mb-2">StokTeleBot</h3>
             <p class="mb-4">Telegram-бот для сбора статистики Wildberries, написан на Python, развернут с Celery и FastAPI.</p>
             <div class="space-x-4">
-              <span class="px-3 py-1 bg-primary-dark text-white rounded-full">Python</span>
-              <span class="px-3 py-1 bg-secondaryA text-white rounded-full">Docker</span>
-              <span class="px-3 py-1 bg-secondaryB text-white rounded-full">Celery</span>
+              <span class="px-3 py-1 static bg-primary-dark text-white rounded-full">Python</span>
+              <span class="px-3 py-1 static bg-secondaryA text-white rounded-full">Docker</span>
+              <span class="px-3 py-1 static bg-secondaryB text-white rounded-full">Celery</span>
             </div>
           </div>
       </div>
@@ -135,12 +149,29 @@
     hamburger.addEventListener('click', () => {
       sidebar.classList.toggle('-translate-x-full');
     });
-    // Theme toggle example (dark/light)
-    document.getElementById('theme-btn')?.addEventListener('click', () => {
-      const body = document.getElementById('body');
-      const theme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', theme);
+
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const body = document.getElementById('body');
+    
+    // Load saved theme from localStorage
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    body.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+    
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
     });
+    
+    function updateThemeIcon(theme) {
+      themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
   </script>
 </body>
 </html>
