@@ -37,6 +37,8 @@
     [data-theme="dark"] .bg-white .text-xl { color: #e5e5e5; }
     [data-theme="dark"] .bg-white .text-gray-700 { color: #d1d5db; }
     [data-theme="dark"] .bg-white .text-gray-600 { color: #9ca3af; }
+    [data-theme="dark"] .text-gray-900 { color: #e5e5e5; }
+    [data-theme="dark"] .bg-white { background-color: #1a1a1a; }
     .theme-toggle {
       transition: all 0.3s ease;
     }
@@ -210,6 +212,18 @@
       // Hide hamburger when sidebar is open
       hamburger.style.opacity = sidebar.classList.contains('-translate-x-full') ? '1' : '0';
       hamburger.style.pointerEvents = sidebar.classList.contains('-translate-x-full') ? 'auto' : 'none';
+    });
+
+    // Close sidebar when clicking on nav links (mobile)
+    const navLinks = document.querySelectorAll('#sidebar a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 768) { // Only on mobile
+          sidebar.classList.add('-translate-x-full');
+          hamburger.style.opacity = '1';
+          hamburger.style.pointerEvents = 'auto';
+        }
+      });
     });
 
     // Theme toggle functionality
