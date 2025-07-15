@@ -1,110 +1,145 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="antialiased" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Linux-like Desktop</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Моя Визитка</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1826B0',
+            'primary-dark': '#081272',
+            secondaryA: '#4C10AE',
+            secondaryB: '#086CA2',
+            accent: '#FFBA00'
+          },
+          fontFamily: {
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    [data-theme="dark"] { --tw-bg-opacity:1; background-color: rgba(8,18,114,var(--tw-bg-opacity)); color: white; }
+    [data-theme="dark"] .sidebar { background-color: #081272; }
+  </style>
 </head>
-<body class="overflow-hidden h-screen bg-gray-800">
-  <div id="container" class="relative w-full h-full">
-    <!-- Login Screen -->
-    <section id="login" class="absolute inset-0 flex flex-col justify-center items-center bg-gray-900 text-white transition-transform duration-700 ease-in-out">
-      <img src="/static/images/photo.jpg" alt="Фото я" class="w-48 h-48 rounded-full border-4 border-white mb-4 object-cover" />
-      <h1 class="text-3xl font-bold mb-2">Очередниченко Данила Алексеевич</h1>
-      <p class="mb-6">Linux Environment</p>
-      <button id="login-btn" class="px-8 py-3 bg-blue-600 rounded-full hover:bg-blue-500 focus:outline-none">Войти</button>
+<body class="font-mono bg-white text-gray-900" id="body">
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar fixed inset-y-0 left-0 w-64 bg-primary text-white transform -translate-x-full md:translate-x-0 transition-transform">
+    <div class="p-6">
+      <h2 class="text-2xl font-bold mb-8">Меню</h2>
+      <nav class="space-y-4">
+        <a href="#hero" class="block hover:text-accent">Home</a>
+        <a href="#about" class="block hover:text-accent">About</a>
+        <a href="#skills" class="block hover:text-accent">Skills</a>
+        <a href="#projects" class="block hover:text-accent">Projects</a>
+        <a href="#contact" class="block hover:text-accent">Contact</a>
+      </nav>
+    </div>
+  </div>
+  <!-- Hamburger -->
+  <button id="hamburger" class="fixed top-4 left-4 z-20 md:hidden p-2 bg-primary text-white rounded-md">
+    ☰
+  </button>
+
+  <main class="md:ml-64">
+    <!-- Hero -->
+    <section id="hero" class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-primary to-secondaryA text-white text-center px-4">
+      <img src="app/static/images/photo.jpg" alt="Фото" class="w-40 h-40 rounded-full border-4 border-white mb-6 object-cover animate-fade-in">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-slide-in">Очередниченко Данила Алексеевич</h1>
+      <p class="text-lg md:text-2xl mb-6 animate-fade-in-delay">Junior DevOps Engineer & Python Developer & Support Engineer</p>
+      <a href="#about" class="px-6 py-3 bg-accent text-primary font-semibold rounded-full hover:bg-opacity-90 animate-button-in">Узнать больше</a>
     </section>
 
-    <!-- Desktop Screen -->
-    <section id="desktop" class="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-in-out transform translate-y-full" style="background-image: url('/static/images/wallpaper.jpg')">
-      <!-- Top bar -->
-      <div class="h-8 bg-gray-900 bg-opacity-70 flex items-center px-4 text-white justify-between">
-        <div class="w-1/3"></div>
-        <div id="datetime" class="w-1/3 flex justify-center space-x-4 font-mono text-sm"></div>
-        <div class="w-1/3 flex justify-end items-center space-x-4 text-sm">
-          <button id="lang-btn" class="focus:outline-none">EN/RU</button>
-          <button id="theme-btn" class="focus:outline-none">🌓</button>
-          <button id="vol-down" class="focus:outline-none">🔉</button>
-          <button id="vol-up" class="focus:outline-none">🔊</button>
+    <!-- About -->
+    <section id="about" class="py-20 px-4 md:px-16">
+      <h2 class="text-3xl font-bold mb-6">Обо мне</h2>
+      <p class="max-w-3xl mx-auto leading-relaxed">Я опытный инженер DevOps с более чем 5-летним опытом автоматизации инфраструктуры: Docker, Kubernetes, CI/CD, мониторинг и разработка бэкенда на Python и FastAPI.</p>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-20 px-4 md:px-16 bg-secondaryB text-white">
+      <h2 class="text-3xl font-bold mb-6 text-center">Навыки</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 max-w-4xl mx-auto">
+        <div class="flex flex-col items-center space-y-2">
+          <img src="/static/icons/docker.svg" alt="Docker" class="w-12 h-12">
+          <span>Docker</span>
         </div>
-      </div>
-      <!-- Icons area -->
-      <div class="p-6 grid grid-cols-4 gap-8">
-        <div class="flex flex-col items-center cursor-pointer hover:scale-110 transform transition">
-          <img src="/static/icons/terminal.svg" alt="Terminal" class="w-12 h-12 mb-2" />
-          <span class="text-xs text-white">Terminal</span>
+        <div class="flex flex-col items-center space-y-2">
+          <img src="/static/icons/kubernetes.svg" alt="Kubernetes" class="w-12 h-12">
+          <span>Kubernetes</span>
         </div>
-        <div class="flex flex-col items-center cursor-pointer hover:scale-110 transform transition">
-          <img src="/static/icons/browser.svg" alt="Browser" class="w-12 h-12 mb-2" />
-          <span class="text-xs text-white">Browser</span>
+        <div class="flex flex-col items-center space-y-2">
+          <img src="/static/icons/python.svg" alt="Python" class="w-12 h-12">
+          <span>Python</span>
         </div>
-        <div class="flex flex-col items-center cursor-pointer hover:scale-110 transform transition">
-          <img src="/static/icons/folder.svg" alt="Files" class="w-12 h-12 mb-2" />
-          <span class="text-xs text-white">Files</span>
-        </div>
-        <div class="flex flex-col items-center cursor-pointer hover:scale-110 transform transition">
-          <img src="/static/icons/settings.svg" alt="Settings" class="w-12 h-12 mb-2" />
-          <span class="text-xs text-white">Settings</span>
-        </div>
-      </div>
-      <!-- Slider toggle button -->
-      <button id="slider-toggle" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-900 bg-opacity-70 text-white p-2 rounded-full focus:outline-none">📞</button>
-      <!-- Contact Slider -->
-      <div id="slider" class="fixed bottom-0 left-0 w-full bg-gray-800 bg-opacity-90 p-6 transform translate-y-full transition-transform duration-500 ease-in-out">
-        <div class="flex justify-between items-center mb-4">
-          <h3 class="text-white font-semibold">Контакты</h3>
-          <button id="slider-close" class="text-white focus:outline-none">✖️</button>
-        </div>
-        <div class="grid grid-cols-3 gap-4">
-          <a href="mailto:danila17102002@gmail.com" class="flex flex-col items-center justify-center bg-white rounded-md p-4 hover:bg-gray-200">
-            <img src="/static/icons/mail.svg" alt="Email" class="w-8 h-8 mb-2" />
-            <span class="text-sm">Email</span>
-          </a>
-          <a href="https://t.me/metaagrar" class="flex flex-col items-center justify-center bg-white rounded-md p-4 hover:bg-gray-200">
-            <img src="/static/icons/telegram.svg" alt="Telegram" class="w-8 h-8 mb-2" />
-            <span class="text-sm">Telegram</span>
-          </a>
-          <a href="https://github.com/IDRGI-hub" class="flex flex-col items-center justify-center bg-white rounded-md p-4 hover:bg-gray-200">
-            <img src="/static/icons/github.svg" alt="GitHub" class="w-8 h-8 mb-2" />
-            <span class="text-sm">GitHub</span>
-          </a>
+        <div class="flex flex-col items-center space-y-2">
+          <img src="/static/icons/fastapi.svg" alt="FastAPI" class="w-12 h-12">
+          <span>FastAPI</span>
         </div>
       </div>
     </section>
-  </div>
+
+    <!-- Projects -->
+    <section id="projects" class="py-20 px-4 md:px-16">
+      <h2 class="text-3xl font-bold mb-6">Проекты</h2>
+      <div class="space-y-12">
+        <!-- Project Card -->
+        <div class="md:flex bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow">
+          <img src="/static/projects/project1.png" alt="Project1" class="w-full md:w-1/3 h-48 object-cover">
+          <div class="p-6 flex flex-col justify-between">
+            <h3 class="text-2xl font-semibold mb-2">StokTeleBot</h3>
+            <p class="mb-4">Telegram-бот для сбора статистики Wildberries, написан на Python, развернут с Celery и FastAPI.</p>
+            <div class="space-x-4">
+              <span class="px-3 py-1 bg-primary-dark text-white rounded-full">Python</span>
+              <span class="px-3 py-1 bg-secondaryA text-white rounded-full">Docker</span>
+              <span class="px-3 py-1 bg-secondaryB text-white rounded-full">Celery</span>
+            </div>
+          </div>
+        </div>
+        <div class="md:flex bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow">
+          <img src="/static/projects/project1.png" alt="Project1" class="w-full md:w-1/3 h-48 object-cover">
+          <div class="p-6 flex flex-col justify-between">
+            <h3 class="text-2xl font-semibold mb-2">StokTeleBot</h3>
+            <p class="mb-4">Telegram-бот для сбора статистики Wildberries, написан на Python, развернут с Celery и FastAPI.</p>
+            <div class="space-x-4">
+              <span class="px-3 py-1 bg-primary-dark text-white rounded-full">Python</span>
+              <span class="px-3 py-1 bg-secondaryA text-white rounded-full">Docker</span>
+              <span class="px-3 py-1 bg-secondaryB text-white rounded-full">Celery</span>
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 px-4 md:px-16 bg-primary text-white text-center">
+      <h2 class="text-3xl font-bold mb-6">Контакты</h2>
+      <div class="flex justify-center space-x-8">
+        <a href="mailto:danila17102002@gmail.com" class="hover:text-accent">📧 Email</a>
+        <a href="https://t.me/metaagrar" class="hover:text-accent">💬 Telegram</a>
+        <a href="https://github.com/IDRGI-hub" class="hover:text-accent">🐱 GitHub</a>
+      </div>
+    </section>
+  </main>
 
   <script>
-    // Login transition
-    const login = document.getElementById('login');
-    const desktop = document.getElementById('desktop');
-    document.getElementById('login-btn').addEventListener('click', () => {
-      login.classList.add('-translate-y-full');
-      desktop.classList.remove('translate-y-full');
+    // Sidebar toggle
+    const sidebar = document.getElementById('sidebar');
+    const hamburger = document.getElementById('hamburger');
+    hamburger.addEventListener('click', () => {
+      sidebar.classList.toggle('-translate-x-full');
     });
-    // Date/time update
-    function updateDateTime() {
-      const now = new Date();
-      const days = ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'];
-      const day = days[now.getDay()];
-      const date = now.toLocaleDateString('ru-RU');
-      const time = now.toLocaleTimeString('ru-RU', {hour: '2-digit', minute:'2-digit'});
-      document.getElementById('datetime').textContent = `${day}, ${date} ${time}`;
-    }
-    setInterval(updateDateTime, 60000);
-    updateDateTime();
-    // Theme toggle
-    const themeBtn = document.getElementById('theme-btn');
-    themeBtn.addEventListener('click', () => {
-      document.documentElement.classList.toggle('dark');
-    });
-    // Slider toggle
-    const slider = document.getElementById('slider');
-    document.getElementById('slider-toggle').addEventListener('click', () => {
-      slider.classList.toggle('translate-y-full');
-    });
-    document.getElementById('slider-close').addEventListener('click', () => {
-      slider.classList.add('translate-y-full');
+    // Theme toggle example (dark/light)
+    document.getElementById('theme-btn')?.addEventListener('click', () => {
+      const body = document.getElementById('body');
+      const theme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
     });
   </script>
 </body>
