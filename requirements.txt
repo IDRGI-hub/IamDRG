@@ -3,3 +3,7 @@ jinja2
 uvicorn[standard]
 sqlalchemy
 asyncpg
+python-dotenv
+python-multipart
+slowapi
+itsdangerous

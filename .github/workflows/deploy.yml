@@ -30,6 +30,19 @@ jobs:
             # Обновляем код
             git pull origin main
 
+            # Создаем .env файл из secrets
+            cat > .env << EOF
+            POSTGRES_USER=${{ secrets.POSTGRES_USER }}
+            POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+            POSTGRES_DB=${{ secrets.POSTGRES_DB }}
+            APP_SECRET_KEY=${{ secrets.APP_SECRET_KEY }}
+            APP_DEBUG=False
+            APP_HOST=0.0.0.0
+            APP_PORT=8000
+            DOMAIN_NAME=${{ secrets.DOMAIN_NAME }}
+            ALLOWED_ORIGINS=${{ secrets.ALLOWED_ORIGINS }}
+            EOF
+
             # Собираем и перезапускаем стек
             docker-compose down
             docker-compose up -d --build
